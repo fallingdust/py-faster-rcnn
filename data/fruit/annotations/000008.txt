@@ -1,0 +1,6 @@
+foreground 443 632 579 764
+foreground 715 384 819 460
+foreground 863 432 999 584
+foreground 809 554 951 692
+foreground 847 638 997 796
+foreground 1611 564 1711 700

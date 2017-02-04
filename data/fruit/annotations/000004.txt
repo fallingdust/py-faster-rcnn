@@ -1,0 +1,6 @@
+foreground 49 438 153 530
+foreground 409 428 519 544
+foreground 797 626 919 760
+foreground 1093 630 1223 754
+foreground 1519 626 1689 778
+foreground 1637 448 1781 570
