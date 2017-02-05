@@ -39,7 +39,7 @@ for split in ['train', 'test']:
 
 # Set up coca_<split>
 for split in ['train', 'test']:
-    name = 'fruit_{}'.format(split)
+    name = 'coca_{}'.format(split)
     __sets[name] = (lambda split=split: fruit(split))
 
 def get_imdb(name):
