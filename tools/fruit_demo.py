@@ -26,12 +26,6 @@ import argparse
 
 CLASSES = ('__background__', 'foreground')
 
-NETS = {'vgg16': ('VGG16',
-                  'VGG16_faster_rcnn_final.caffemodel'),
-        'zf': ('ZF',
-                  'ZF_faster_rcnn_final.caffemodel')}
-
-
 def vis_detections(im, class_name, dets, thresh=0.5):
     """Draw detected bounding boxes."""
     inds = np.where(dets[:, -1] >= thresh)[0]
@@ -100,8 +94,8 @@ def parse_args():
     parser.add_argument('--cpu', dest='cpu_mode',
                         help='Use CPU mode (overrides --gpu)',
                         action='store_true')
-    parser.add_argument('--net', dest='demo_net', help='Network to use [zf]',
-                        choices=NETS.keys(), default='zf')
+    parser.add_argument('--model', dest='model_path', help='Model path')
+    parser.add_argument('--net', dest='net_path', help='Network path')
 
     args = parser.parse_args()
 
@@ -112,10 +106,8 @@ if __name__ == '__main__':
 
     args = parse_args()
 
-    prototxt = os.path.join(cfg.MODELS_DIR, NETS[args.demo_net][0],
-                            'faster_rcnn_alt_opt', 'faster_rcnn_test.pt')
-    caffemodel = os.path.join(cfg.DATA_DIR, 'faster_rcnn_models',
-                              NETS[args.demo_net][1])
+    prototxt = args.model_path
+    caffemodel = args.net_path
 
     if not os.path.isfile(caffemodel):
         raise IOError(('{:s} not found.\nDid you run ./data/script/'
@@ -136,11 +128,10 @@ if __name__ == '__main__':
     for i in xrange(2):
         _, _= im_detect(net, im)
 
-    im_names = ['rgb_11_2015-03-19-17-36-34.png', 'rgb_100_2015-03-19-17-37-11.png',
-                'rgb_105_2015-03-19-17-37-12.png']
+    im_names = ['000009.png', '000010.png']
     for im_name in im_names:
         print '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
-        print 'Demo for data/fruit_demo/{}'.format(im_name)
+        print 'Demo for data/fruit/images/{}'.format(im_name)
         demo(net, im_name)
 
     plt.show()
