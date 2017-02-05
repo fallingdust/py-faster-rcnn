@@ -12,6 +12,7 @@ __sets = {}
 from datasets.pascal_voc import pascal_voc
 from datasets.coco import coco
 from datasets.fruit import fruit
+from datasets.coca import coca
 import numpy as np
 
 # Set up voc_<year>_<split> using selective search "fast" mode
@@ -40,7 +41,7 @@ for split in ['train', 'test']:
 # Set up coca_<split>
 for split in ['train', 'test']:
     name = 'coca_{}'.format(split)
-    __sets[name] = (lambda split=split: fruit(split))
+    __sets[name] = (lambda split=split: coca(split))
 
 def get_imdb(name):
     """Get an imdb (image database) by name."""
