@@ -62,7 +62,7 @@ def demo(net, image_name):
     """Detect object classes in an image using pre-computed object proposals."""
 
     # Load the demo image
-    im_file = os.path.join(cfg.DATA_DIR, 'demo', image_name)
+    im_file = os.path.join(cfg.DATA_DIR, 'fruit', 'images', image_name)
     im = cv2.imread(im_file)
 
     # Detect all object classes and regress object bounds
