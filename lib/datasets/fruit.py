@@ -10,7 +10,7 @@ from my_eval import voc_eval
 
 class fruit(imdb):
     def __init__(self, image_set, devkit_path=None):
-        imdb.__init__(self, image_set)
+        imdb.__init__(self, 'fruit_' + image_set)
         self._image_set = image_set
         self._devkit_path = self._get_default_path() if devkit_path is None \
             else devkit_path
@@ -22,7 +22,6 @@ class fruit(imdb):
         # Default to roidb handler
         self._roidb_handler = self.rpn_roidb
         self._salt = str(uuid.uuid4())
-        self._comp_id = 'comp4'
 
         # PASCAL specific config options
         self.config = {'cleanup'     : True,
