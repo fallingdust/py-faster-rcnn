@@ -37,6 +37,11 @@ for split in ['train', 'test']:
     name = 'fruit_{}'.format(split)
     __sets[name] = (lambda split=split: fruit(split))
 
+# Set up coca_<split>
+for split in ['train', 'test']:
+    name = 'fruit_{}'.format(split)
+    __sets[name] = (lambda split=split: fruit(split))
+
 def get_imdb(name):
     """Get an imdb (image database) by name."""
     if not __sets.has_key(name):

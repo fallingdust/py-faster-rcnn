@@ -44,6 +44,12 @@ case $DATASET in
     PT_DIR="fruit"
     ITERS=2000
     ;;
+  coca)
+    TRAIN_IMDB="coca_train"
+    TEST_IMDB="coca_test"
+    PT_DIR="coca"
+    ITERS=2000
+    ;;
   *)
     echo "No dataset given"
     exit
