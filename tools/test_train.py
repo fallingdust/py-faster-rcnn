@@ -83,7 +83,7 @@ if __name__ == '__main__':
         pass
     prev_models = []
     while True:
-        models = glob.glob(net_pattern)
+        models = sorted(glob.glob(net_pattern), key=os.path.getmtime)
         new_models = [model for model in models if model not in prev_models]
         prev_models = models
         if new_models:
@@ -93,7 +93,7 @@ if __name__ == '__main__':
                 m_ap = test_net(net, imdb, max_per_image=args.max_per_image, vis=args.vis)
                 if m_ap is not None:
                     with open(log_file, 'a') as log:
-                        log.write('Model: {}, mAP: {}\n'.format(new_model, m_ap))
+                        log.write('Model: {}, mAP: {:.4f}\n'.format(new_model, m_ap))
         else:
             print 'Waiting for new models...'
             time.sleep(10)
