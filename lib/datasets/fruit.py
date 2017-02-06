@@ -200,24 +200,27 @@ class fruit(imdb):
             print('AP for {} = {:.4f}'.format(cls, ap))
             with open(os.path.join(output_dir, cls + '_pr.pkl'), 'w') as f:
                 cPickle.dump({'rec': rec, 'prec': prec, 'ap': ap}, f)
-        print('Mean AP = {:.4f}'.format(np.mean(aps)))
+        m_ap = np.mean(aps)
+        print('Mean AP = {:.4f}'.format(m_ap))
         print('~~~~~~~~')
         print('Results:')
         for ap in aps:
             print('{:.3f}'.format(ap))
-        print('{:.3f}'.format(np.mean(aps)))
+        print('{:.3f}'.format(m_ap))
         print('~~~~~~~~')
         print('')
+        return m_ap
 
     def evaluate_detections(self, all_boxes, output_dir):
         self._write_voc_results_file(all_boxes)
-        self._do_python_eval(output_dir)
+        m_ap = self._do_python_eval(output_dir)
         if self.config['cleanup']:
             for cls in self._classes:
                 if cls == '__background__':
                     continue
                 filename = self._get_voc_results_file_template().format(cls)
                 os.remove(filename)
+        return m_ap
 
     def competition_mode(self, on):
         if on:
