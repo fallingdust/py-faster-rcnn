@@ -52,6 +52,9 @@ def parse_args():
     parser.add_argument('--num_dets', dest='max_per_image',
                         help='max number of detections per image',
                         default=100, type=int)
+    parser.add_argument('--thresh', dest='thresh',
+                        help='threshold of scores',
+                        default=0.05, type=float)
 
     if len(sys.argv) == 1:
         parser.print_help()
@@ -94,4 +97,4 @@ if __name__ == '__main__':
     if not cfg.TEST.HAS_RPN:
         imdb.set_proposal_method(cfg.TEST.PROPOSAL_METHOD)
 
-    test_net(net, imdb, max_per_image=args.max_per_image, vis=args.vis)
+    test_net(net, imdb, max_per_image=args.max_per_image, thresh=args.thresh, vis=args.vis)
